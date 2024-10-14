@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+	<form action="/addition/Add">
+		<tr>
+		<td>first number</td>
+		<td><input type="text" name="firstNumber"/></td>
+		</tr>
+	</form>
+</table>
+</body>
+</html>

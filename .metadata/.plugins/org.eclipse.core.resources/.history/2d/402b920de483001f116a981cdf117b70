@@ -1,0 +1,10 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class Driver{
+	public static Connection getConnection() {
+		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/usern","root","123456789");
+	}
+		
+}

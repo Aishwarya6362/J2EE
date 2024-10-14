@@ -1,0 +1,30 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Scanner;
+
+import com.mysql.cj.protocol.Resultset;
+
+
+public class YCrud {
+	public static void main(String[] args) throws Exception {
+		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/msproject1","root","123456789");
+		
+//		retrieving the data from table
+		String s="select * from student;";
+		Statement st=con.createStatement();
+		Resultset res=(Resultset) st.executeQuery(s);
+		while(((ResultSet) res).next()==true) {
+			int id=((ResultSet) res).getInt(1);
+			String name=((ResultSet) res).getString(2);
+			int marks1=((ResultSet) res).getInt(3);
+			int marks2=((ResultSet) res).getInt(4);
+			int marks3=((ResultSet) res).getInt(5);
+			System.out.println(id+" "+name+" "+marks1+" "+marks2+" "+marks3);
+		
+		}
+	}
+}

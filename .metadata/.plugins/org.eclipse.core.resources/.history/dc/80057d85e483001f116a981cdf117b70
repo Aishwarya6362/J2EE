@@ -1,0 +1,26 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+
+public class zmock2Read {
+	public static void main(String [] args)throws Exception{
+		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+		System.out.println("driver loaded successfully");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mock","root","123456789");
+		String s="select * from employee where emp_id=?";
+		PreparedStatement pstmt=con.prepareStatement(s);
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter the id:");
+		int emp_id=sc.nextInt();
+		pstmt.setInt(1,emp_id);
+		ResultSet res=pstmt.executeQuery();
+		if(res.next()==true) {
+			emp_id=res.getInt(1);
+			String emp_name=res.getString(2);
+			String place=res.getString(3);
+			System.out.println(emp_id+" "+emp_name+" "+place);
+		}
+	}
+}

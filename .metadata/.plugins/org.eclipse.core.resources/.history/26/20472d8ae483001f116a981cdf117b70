@@ -1,0 +1,27 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
+
+public class zmock3insert {
+	public static void main(String[] args)throws Exception{
+		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+		System.out.println("success");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mock","root","123456789");
+		System.out.println("connection success");
+		String s="insert into employee values(?,?,?)";
+		PreparedStatement pstmt=con.prepareStatement(s);
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter the emp id: ");
+		int id=sc.nextInt();
+		System.out.println("enter the emp name: ");
+		String emp_name=sc.next();
+		System.out.println("enter place: ");
+		String place=sc.next();
+		pstmt.setInt(1,id);
+		pstmt.setString(2, emp_name);
+		pstmt.setString(3,place);
+		int rows=pstmt.executeUpdate();
+		System.out.println(rows);
+	}
+}

@@ -1,0 +1,9 @@
+package com.qn.model;
+
+public class Student {
+
+	public int addResult() {
+		
+		return 0;
+	}
+}

@@ -1,0 +1,9 @@
+import java.sql.DriverManager;
+
+public class pgm5delete {
+	public static void main(String[] args) throws Exception{
+		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+		System.out.println("driver loaded successfully");
+		
+	}
+}

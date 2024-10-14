@@ -1,0 +1,10 @@
+package com.qn.model;
+
+public class Student {
+
+	public int addResult() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

@@ -1,0 +1,61 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Scanner;
+
+import com.mysql.cj.protocol.Resultset;
+
+
+public class YCrud {
+	public static void main(String[] args) throws Exception {
+		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/msproject1","root","123456789");
+		
+//		retrieving the data from table
+		String s="select * from student;";
+		Statement st=con.createStatement();
+		Resultset res=(Resultset) st.executeQuery(s);
+		while(((ResultSet) res).next()==true) {
+			int id=((ResultSet) res).getInt(1);
+			String name=((ResultSet) res).getString(2);
+			int marks1=((ResultSet) res).getInt(3);
+			int marks2=((ResultSet) res).getInt(4);
+			int marks3=((ResultSet) res).getInt(5);
+			System.out.println(id+" "+name+" "+marks1+" "+marks2+" "+marks3);
+		
+		//inserting the values into the table
+		Scanner sc=new Scanner(System.in);
+		String s1="insert into student values(?,?,?,?,?);";
+		PreparedStatement ps=con.prepareStatement(s1);
+		System.out.println("enter id");
+		int id1=sc.nextInt();
+		System.out.println("enter name");
+		String name1=sc.next();
+		System.out.println("enter marks1");
+		int marks11=sc.nextInt();
+		System.out.println("enter marks2");
+		int marks21=sc.nextInt();
+		System.out.println("enter marks3");
+		int marks31=sc.nextInt();
+		
+		ps.setInt(1,id1);
+		ps.setString(2, name1);
+		ps.setInt(3, marks11);
+		ps.setInt(4, marks21);
+		ps.setInt(5, marks31);
+		int rows=ps.executeUpdate();
+		System.out.println(rows);
+		
+		//update the values into table
+		String s2="update student set name=? where id=?;";
+		PreparedStatement ps2=con.prepareStatement(s2);
+		System.out.println("enter id");
+		int id2=sc.nextInt();
+		System.out.println("enter name");
+		String name2=sc.next();
+		
+		}
+	}
+}

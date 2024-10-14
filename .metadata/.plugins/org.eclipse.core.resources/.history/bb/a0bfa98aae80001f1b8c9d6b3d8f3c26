@@ -1,0 +1,9 @@
+package JDBC;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class Demo {
+	public static void main(String[] args) throws Exception{
+		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+		System.out.println("driver loaded suc
